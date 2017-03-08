@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="medium-10 columns content-focus">
+
+    <!-- <div class="ui small breadcrumb">
+      <a class="section" href="/forum/">Forum Home</a> <span>&gt;</span>
+      <a class="section active">{{title}}</a>
+    </div> -->
+
+    <a href="/forum/new/{{data._id}}">Start new discussion</a>
+
+
+    <h2>{{data.title}} {{#if global.admin_token}}<small><a href="/forum/edit-category/{{data._id}}">(edit)</a></small>{{/if}}</h2>
+    <h3>{{data.description}}</h3>
+
+    <table class="forum">
+
+    	<tr class="head">
+    		<td>&nbsp;</td>
+    		<td class="center">Posts</td>
+    		<td class="center">Last Updated</td>
+    	</tt>
+
+    	{{#if threads}}
+        {{#each threads}}
+      	<tr>
+      		<td>
+      			<a href="/forum/{{../data.slug}}/{{_id}}">{{title}}</a>
+      			<span>First post by {{first_username}}: "{{first_truncated}}"</span>
+      			{{#if last_username}}<span>Last post by {{last_username}}: "{{last_truncated}}"</span>{{/if}}
+      		</td>
+      		<td class="center">{{total_posts}}</td>
+      		<td class="center">{{date_last_activity}}</td>
+      	</tr>
+        {{/each}}
+    	{{else}}
+      	<tr>
+      		<td colspan="3">
+          No discussions in this category yet.<br />
+          <a href="/forum/new/{{data._id}}">Start a new discussion</a></td>
+      	</tr>
+    	{{/if}}
+
+    </table>
+
+
+
+
+
+
+  </div>
+  <div class="medium-2 columns sidebar">
+
+    {{#unless global.auth_token}}
+    <div class="login-prompt">
+      Want to join the discussion? <a rel="login" href="/login">log in</a> (or <a href="/register">register</a>, if you don't already have an account).
+    </div>
+    {{/unless}}
+
+    {{> ads}}
+
+  </div>
+</div>

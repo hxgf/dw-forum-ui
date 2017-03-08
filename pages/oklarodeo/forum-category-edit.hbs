@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="medium-10 columns content-focus">
+
+    <!-- <div class="ui small breadcrumb">
+      <a class="section" href="/forum/">Forum Home</a> <span>&gt;</span>
+      <a class="section" href="/forum/{{thread.slug}}/">{{thread.title}}</a> <span>&gt;</span>
+      <a class="section active">New Discussion</a>
+    </div> -->
+
+    <form action="/forum/edit-category/{{id}}/process" method="post">
+
+      <label>Category Title</label>
+      <input type="text" name="title" value="{{data.title}}" />
+
+      <label>Description</label>
+      <textarea name="description">{{data.description}}</textarea>
+
+      <button>Save Category</button>
+
+    </form>
+
+  </div>
+  <div class="medium-2 columns sidebar">
+    {{> ads}}
+
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="row forum">
+  <div class="medium-10 columns content-focus">
+
+    {{#if global.admin_token}}<a href="/forum/edit-category/new">New category</a>{{/if}}
+    <a href="/forum/new">Start new discussion</a>
+
+    <table class="forum">
+    	<tr class="head">
+    		<td>&nbsp;</td>
+    		<td class="center">Threads</td>
+    		<td class="center">Posts</td>
+    		<td class="center">Last Updated</td>
+    	</tr>
+    	{{#each categories}}
+    	<tr>
+    		<td><a href="/forum/{{slug}}">{{title}}</a><span>{{description}}</span></td>
+        <td class="center">{{total_threads}}</td>
+    		<td class="center">{{total_posts}}</td>
+    		<td class="center">{{date_last_activity}}</td>
+    	</tr>
+    	{{/each}}
+    </table>
+
+  </div>
+
+  <div class="medium-2 columns sidebar">
+
+    {{#unless global.auth_token}}
+    <div class="login-prompt">
+      Want to join the discussion? <a rel="login" href="/login">log in</a> (or <a href="/register">register</a>, if you don't already have an account).
+    </div>
+    {{/unless}}
+
+
+    {{> ads}}
+
+  </div>
+
+</div>

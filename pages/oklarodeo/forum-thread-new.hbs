@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="medium-10 columns content-focus">
+
+    <!-- <div class="ui small breadcrumb">
+      <a class="section" href="/forum/">Forum Home</a> <span>&gt;</span>
+      <a class="section" href="/forum/{{thread.slug}}/">{{thread.title}}</a> <span>&gt;</span>
+      <a class="section active">New Discussion</a>
+    </div> -->
+
+
+    <h2>New Discussion:</h2>
+
+
+    <form action="/forum/new/process" method="post">
+
+      <label>Discussion Topic</label>
+      <input type="text" name="title" />
+
+      <label>Category</label>
+      <select name="category_id">
+        <option></option>
+        {{#each categories}}
+        <option value="{{id}}" {{#is id "==" ../category_id}}selected{{/is}}>{{title}}</option>
+        {{/each}}
+      </select>
+
+      <label>Post Body</label>
+      <textarea name="body"></textarea>
+
+      <button>Start new discussion</button>
+
+    </form>
+
+    <!-- discussion guidelines, friendly warnings -->
+    <!-- edited by moderators? admin? -->
+
+  </div>
+  <div class="medium-2 columns sidebar">
+    {{> ads}}
+
+  </div>
+</div>

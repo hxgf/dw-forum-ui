@@ -1,0 +1,18 @@
+<!-- // fixit make this match post and then make the js stuff match this -->
+	<ul class="comment-list">
+		{{#each comments}}
+	  <li class="author" data-comment-id="{{_id}}">
+	    <span class="avatar"><a href="/people/{{author_url}}"><img src="{{author_avatar}}" />{{author_screenname}}</a></span>
+	      <span class="message">{{body}}</span>
+	      <span class="date">{{format_timestamp date}}</span>
+	      {{#if can_delete}}<span><a href="#" data-id="{{_id}}" rel="delete-comment">delete</a></span>{{/if}}
+	    </span>
+	  </li>
+	  {{/each}}
+	</ul>
+	
+	
+	<div>
+		<textarea id="comment-reply"></textarea>
+		<button id="comment-save" data-id="{{data._id}}" data-type="{{comment_type}}">comment</button>
+	</div>

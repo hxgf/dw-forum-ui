@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="medium-10 columns content-focus">
+<!--
+
+<div class="ui small breadcrumb">
+	<a class="section" href="/forum/">Forum Home</a> <span>&gt;</span>
+	<a class="section" href="/forum/{{category_url_title}}/">{{category_title}}</a> <span>&gt;</span>
+	<a class="section active">{{title}}</a>
+</div>
+
+-->
+
+
+<!-- if moderator, make sticky -->
+
+
+
+<h2>{{data.title}}</h2>
+{{#if data.date_locked}}<h3>This discussion has been closed</h3>{{/if}}
+
+  {{#each posts}}
+  <div class="post">
+
+  	<div class="author {{#if op}}op{{/if}}">
+			<a href="/profile/{{author.slug}}" class="username">{{author.screenname}}</a>
+			{{#if author.moderator}}<span>Moderator</span>{{/if}}
+			<div class="date">
+				{{post.date_created}}
+			</div>
+  	</div>
+
+    <!-- {{#can_edit}}
+    <div class="control">
+      <a href="#" rel="edit-post" data-id="{{id}}"><i class="pencil icon"></i>Edit</a>
+      <a href="#" rel="delete-post" data-id="{{id}}"><i class="remove icon"></i>Delete</a>
+    </div>
+    {{/can_edit}} -->
+
+    <!-- if auth, flag post -->
+    <!-- if moderator, unflag post -->
+
+  	<div class="body">
+  		{{post.body}}
+  		{{#if post.attachment_url}}<a href="{{post.attachment_url}}">{{post.attachment_url}}</a>{{/if}}
+      {{#if post.attachment_image_url}}<a href="{{post.attachment_image_url}}"><img src="{{post.attachment_image_url}}" /></a>{{/if}}
+  	</div>
+
+    <!-- {{#if replies}}
+      <ul>
+        {{#each replies}}
+          <li>{{author.screenname}}: {{reply.body}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    <form class="post-reply" action="/forum/{{../slug}}/{{../data.id}}/reply/{{post.id}}" method="post">
+      <textarea name="post_reply[{{post.id}}]"></textarea>
+      <button rel="post_reply">reply</button>
+    </form> -->
+
+  </div>
+  {{/each}}
+
+
+  {{#unless data.date_locked}}
+    {{#if global.auth_token}}
+    <form class="thread-reply" action="/forum/{{slug}}/{{data.id}}/reply" method="post">
+      <input type="hidden" name="category_id" value="{{data.category_id}}" />
+      <input type="hidden" name="thread_id" value="{{data.thread_id}}" />
+      <div class="field">
+        <textarea name="thread_reply"></textarea>
+      </div>
+      <!-- upload an image -->
+      <!-- attach a file -->
+      <button>Post</button>
+    </form>
+    {{else}}
+    <div class="login-prompt-foot">
+    	Want to join the discussion? <a rel="login" href="/login">log in</a> (or <a href="/register">register</a>, if you don't have an account)
+    </div>
+    {{/if}}
+  {{/unless}}
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  <div class="medium-2 columns sidebar">
+
+    {{#unless global.auth_token}}
+    <div class="login-prompt">
+      Want to join the discussion? <a rel="login" href="/login">log in</a> (or <a href="/register">register</a>, if you don't already have an account).
+    </div>
+    {{/unless}}
+
+    {{> ads}}
+
+  </div>
+</div>
